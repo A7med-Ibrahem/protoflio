@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahmed Ibrahim | Full-Stack .NET Developer</title>
+    <meta
+      name="description"
+      content="Full-Stack .NET Developer specializing in C#, ASP.NET Core, SQL Server, and modern web development. Turning ideas into fully functional systems."
+    />
+    <meta
+      name="keywords"
+      content=".NET Developer, C#, ASP.NET Core, SQL Server, Full-Stack, Web Development"
+    />
+    <meta name="author" content="Ahmed Ibrahim" />
+
+    <!-- Open Graph for LinkedIn -->
+    <meta
+      property="og:title"
+      content="Ahmed Ibrahim | Full-Stack .NET Developer"
+    />
+    <meta
+      property="og:description"
+      content="Building scalable web applications with .NET technologies"
+    />
+    <meta property="og:image" content="assets/images/profile.jpg" />
+    <meta property="og:url" content="https://ahmedibrahim.dev" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">AI<span class="dot">.</span></a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <button id="theme-toggle" aria-label="Toggle dark mode">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section with Profile Photo -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <!-- Profile Photo -->
+          <div class="profile-photo-container">
+            <div class="profile-photo">
+              <img
+                src="photo.jpg.jpeg"
+                alt="Ahmed Ibrahim - Full Stack .NET Developer"
+                class="profile-img"
+                id="profileImg"
+                onerror="
+                  this.src =
+                    'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iIzI1NjNlYiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iODAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5BSTwvdGV4dD48L3N2Zz4='
+                "
+              />
+              <div class="photo-frame"></div>
+            </div>
+          </div>
+
+          <!-- Personal Info -->
+          <div class="hero-info">
+            <h1 class="hero-title">Ahmed Ibrahim</h1>
+            <h2 class="hero-subtitle">Full-Stack .NET Developer</h2>
+            <p class="hero-tagline">
+              Turning ideas into fully functional, deployed systems using C#,
+              SQL, and modern web technologies
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#projects" class="btn btn-primary">
+                <i class="fas fa-code"></i> View Projects
+              </a>
+              <a href="#contact" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i> Contact Me
+              </a>
+              <a
+                href="assets/Ahmed_Ibrahim_CV.pdf"
+                class="btn btn-outline"
+                download
+              >
+                <i class="fas fa-download"></i> Download CV
+              </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="hero-social">
+              <a
+                href="https://github.com/A7med-Ibrahem"
+                target="_blank"
+                aria-label="GitHub"
+                class="social-link"
+              >
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ahmed-ibrahim-36b91a1bb"
+                target="_blank"
+                aria-label="LinkedIn"
+                class="social-link"
+              >
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="mailto:ai4456213@gmail.com"
+                aria-label="Email"
+                class="social-link"
+              >
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Visual -->
+        <div class="hero-visual">
+          <div class="code-visual">
+            <div class="code-window">
+              <div class="code-header">
+                <span class="code-dot red"></span>
+                <span class="code-dot yellow"></span>
+                <span class="code-dot green"></span>
+                <span class="code-title">FullStackDeveloper.cs</span>
+              </div>
+              <pre class="code-content">
+<span class="code-keyword">public class</span> <span class="code-class">FullStackDeveloper</span>
+{
+    <span class="code-keyword">public string</span> Name = <span class="code-string">"Ahmed Ibrahim"</span>;
+    <span class="code-keyword">public string</span> Specialization = <span class="code-string">".NET Full-Stack"</span>;
+    
+    <span class="code-keyword">public void</span> BuildProject(<span class="code-interface">Idea</span> idea)
+    {
+        <span class="code-keyword">var</span> frontend = <span class="code-keyword">new</span> <span class="code-class">FrontEnd</span>()
+            .WithHTML()
+            .WithCSS()
+            .WithJavaScript();
+            
+        <span class="code-keyword">var</span> backend = <span class="code-keyword">new</span> <span class="code-class">BackEnd</span>()
+            .WithCSharp()
+            .WithAspNetCore()
+            .WithSqlServer()
+            .WithEntityFramework();
+            
+        <span class="code-keyword">var</span> system = frontend.Combine(backend);
+        system.Deploy();
+        
+        Console.WriteLine(<span class="code-string">"✅ System deployed successfully!"</span>);
+    }
+}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              I'm a passionate Full-Stack .NET Developer who enjoys building web
+              applications from scratch using C#, SQL, ASP.NET Core, HTML, CSS,
+              and JavaScript. My approach combines solid back-end engineering
+              with clean, responsive front-end design.
+            </p>
+            <p>
+              I believe in writing clean, maintainable code and designing
+              systems that are both robust and user-friendly. From database
+              design to UI implementation, I ensure every layer of the
+              application works seamlessly together.
+            </p>
+
+            <div class="about-stats">
+              <div class="stat">
+                <h3>10+</h3>
+                <p>Projects Completed</p>
+              </div>
+              <div class="stat">
+                <h3>100%</h3>
+                <p>Course Completion</p>
+              </div>
+              <div class="stat">
+                <h3>2+</h3>
+                <p>Years Experience</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-highlights">
+            <div class="highlight">
+              <i class="fas fa-layer-group"></i>
+              <h3>Full-Stack Approach</h3>
+              <p>End-to-end development from database to user interface</p>
+            </div>
+            <div class="highlight">
+              <i class="fas fa-rocket"></i>
+              <h3>Rapid Deployment</h3>
+              <p>Turning ideas into deployed, functional systems quickly</p>
+            </div>
+            <div class="highlight">
+              <i class="fas fa-users"></i>
+              <h3>User-Centric</h3>
+              <p>Focusing on both technical excellence and user experience</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+          <!-- Back-End Skills -->
+          <div class="skill-category">
+            <h3><i class="fas fa-server"></i> Back-End & .NET</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <span>C# & .NET Core</span>
+                <div class="skill-level" data-level="95"></div>
+                <span class="skill-percent">95%</span>
+              </div>
+              <div class="skill-item">
+                <span>ASP.NET Core Web APIs</span>
+                <div class="skill-level" data-level="92"></div>
+                <span class="skill-percent">92%</span>
+              </div>
+              <div class="skill-item">
+                <span>RESTful API Design</span>
+                <div class="skill-level" data-level="90"></div>
+                <span class="skill-percent">90%</span>
+              </div>
+              <div class="skill-item">
+                <span>Authentication & Authorization</span>
+                <div class="skill-level" data-level="88"></div>
+                <span class="skill-percent">88%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Database Skills -->
+          <div class="skill-category">
+            <h3><i class="fas fa-database"></i> Database</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <span>SQL Server</span>
+                <div class="skill-level" data-level="90"></div>
+                <span class="skill-percent">90%</span>
+              </div>
+              <div class="skill-item">
+                <span>Entity Framework Core</span>
+                <div class="skill-level" data-level="87"></div>
+                <span class="skill-percent">87%</span>
+              </div>
+              <div class="skill-item">
+                <span>Database Design</span>
+                <div class="skill-level" data-level="85"></div>
+                <span class="skill-percent">85%</span>
+              </div>
+              <div class="skill-item">
+                <span>Stored Procedures</span>
+                <div class="skill-level" data-level="82"></div>
+                <span class="skill-percent">82%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Front-End Skills -->
+          <div class="skill-category">
+            <h3><i class="fas fa-code"></i> Front-End</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <span>HTML5 & CSS3</span>
+                <div class="skill-level" data-level="88"></div>
+                <span class="skill-percent">88%</span>
+              </div>
+              <div class="skill-item">
+                <span>JavaScript (ES6+)</span>
+                <div class="skill-level" data-level="85"></div>
+                <span class="skill-percent">85%</span>
+              </div>
+              <div class="skill-item">
+                <span>Responsive Design</span>
+                <div class="skill-level" data-level="90"></div>
+                <span class="skill-percent">90%</span>
+              </div>
+              <div class="skill-item">
+                <span>DOM Manipulation</span>
+                <div class="skill-level" data-level="83"></div>
+                <span class="skill-percent">83%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools & Concepts -->
+          <div class="skill-category">
+            <h3><i class="fas fa-tools"></i> Tools & Concepts</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <span>Git & GitHub</span>
+                <div class="skill-level" data-level="93"></div>
+                <span class="skill-percent">93%</span>
+              </div>
+              <div class="skill-item">
+                <span>LINQ</span>
+                <div class="skill-level" data-level="91"></div>
+                <span class="skill-percent">91%</span>
+              </div>
+              <div class="skill-item">
+                <span>Clean Architecture</span>
+                <div class="skill-level" data-level="86"></div>
+                <span class="skill-percent">86%</span>
+              </div>
+              <div class="skill-item">
+                <span>SOLID Principles</span>
+                <div class="skill-level" data-level="89"></div>
+                <span class="skill-percent">89%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <!-- New Bus System Project -->
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon">
+                <i class="fas fa-bus"></i>
+              </div>
+              <h3>New Bus System</h3>
+              <div class="project-tags">
+                <span class="tag">ASP.NET Core</span>
+                <span class="tag">SQL Server</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">HTML/CSS</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h4>Problem & Solution</h4>
+              <p>
+                Manual bus scheduling and booking management was inefficient
+                with scheduling conflicts and difficulty tracking trips.
+                Developed a comprehensive web-based bus management system with
+                real-time booking and centralized administration.
+              </p>
+
+              <h4>My Responsibilities</h4>
+              <ul>
+                <li>Built responsive front-end using HTML, CSS, JavaScript</li>
+                <li>Developed back-end APIs with ASP.NET Core and C#</li>
+                <li>Designed and implemented SQL Server database</li>
+                <li>Implemented secure authentication system</li>
+                <li>Deployed complete system to live environment</li>
+              </ul>
+
+              <h4>API Endpoints</h4>
+              <div class="api-features">
+                <code>POST /api/auth/login</code>
+                <code>GET /api/bookings/user/{userId}</code>
+                <code>POST /api/trips/search</code>
+                <code>PUT /api/bookings/{id}/cancel</code>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a
+                href="https://github.com/Yusuf-Hussien/New-Bus-App"
+                target="_blank"
+                class="btn-icon"
+              >
+                <i class="fab fa-github"></i> View Code
+              </a>
+              <a
+                href="https://newbus.vercel.app/login.html"
+                target="_blank"
+                class="btn-icon"
+              >
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a
+                href="#"
+                class="btn-icon"
+                onclick="showProjectDetails('bus-system')"
+              >
+                <i class="fas fa-info-circle"></i> Details
+              </a>
+            </div>
+          </div>
+
+          <!-- E-Commerce Platform -->
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <h3>E-Commerce Platform</h3>
+              <div class="project-tags">
+                <span class="tag">.NET 7</span>
+                <span class="tag">EF Core</span>
+                <span class="tag">JWT Auth</span>
+                <span class="tag">REST API</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h4>Full-Stack Development</h4>
+              <p>
+                Complete e-commerce solution with product management, shopping
+                cart, user authentication, and payment integration.
+              </p>
+
+              <h4>Key Features</h4>
+              <ul>
+                <li>Role-based authentication & authorization</li>
+                <li>Product catalog with search & filtering</li>
+                <li>Shopping cart & checkout process</li>
+                <li>Order management system</li>
+                <li>Admin dashboard for inventory</li>
+              </ul>
+
+              <h4>System Architecture</h4>
+              <div class="architecture-diagram">
+                <div class="arch-layer">Presentation Layer (HTML/CSS/JS)</div>
+                <div class="arch-arrow">↓ API Calls</div>
+                <div class="arch-layer">Application Layer (ASP.NET Core)</div>
+                <div class="arch-arrow">↓ Entity Framework</div>
+                <div class="arch-layer">Data Layer (SQL Server)</div>
+              </div>
+            </div>
+            <div class="project-footer">
+              <a href="#" class="btn-icon"
+                ><i class="fab fa-github"></i> Coming Soon</a
+              >
+              <a href="#" class="btn-icon"
+                ><i class="fas fa-file-code"></i> Case Study</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience & Education Section -->
+    <section id="experience" class="experience">
+      <div class="container">
+        <h2 class="section-title">Experience & Education</h2>
+        <div class="timeline">
+          <!-- Experience -->
+          <div class="timeline-item">
+            <div class="timeline-date">2024 - Present</div>
+            <div class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <h3>.NET Developer - Intern</h3>
+              <h4>Software Development Team</h4>
+              <ul>
+                <li>Developing back-end systems using C# and ASP.NET Core</li>
+                <li>Building RESTful APIs for web and mobile applications</li>
+                <li>Implementing database solutions with SQL Server</li>
+                <li>Collaborating on full-stack development projects</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Training -->
+          <div class="timeline-item">
+            <div class="timeline-date">2025</div>
+            <div class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h3>Full-Stack .NET C# & SQL</h3>
+              <h4>Digital Egypt Pioneers Initiative</h4>
+              <ul>
+                <li>Comprehensive .NET full-stack development program</li>
+                <li>Advanced C# programming and ASP.NET Core frameworks</li>
+                <li>Database design and SQL Server implementation</li>
+                <li>Front-end integration with back-end APIs</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <h3>Web Development Course</h3>
+              <h4>NTI - National Telecommunication Institute</h4>
+              <ul>
+                <li>Completed with 100% achievement score</li>
+                <li>Modern web development technologies and practices</li>
+                <li>Responsive design and cross-browser compatibility</li>
+                <li>Project-based learning with real-world applications</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="timeline-item">
+            <div class="timeline-date">2022 - Present</div>
+            <div class="timeline-content">
+              <div class="timeline-icon">
+                <i class="fas fa-university"></i>
+              </div>
+              <h3>Bachelor of Computer Science</h3>
+              <h4>Hurghada University</h4>
+              <ul>
+                <li>Specialization in Software Engineering</li>
+                <li>Year 3 Student (Expected Graduation: 2025)</li>
+                <li>Focus on software architecture and database systems</li>
+                <li>
+                  Relevant coursework: Algorithms, Web Development, Database
+                  Management
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-container">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h3>Email</h3>
+                <a href="mailto:ai4456213@gmail.com">ai4456213@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-linkedin"></i>
+              <div>
+                <h3>LinkedIn</h3>
+                <a
+                  href="https://www.linkedin.com/in/ahmed-ibrahim-36b91a1bb"
+                  target="_blank"
+                  >linkedin.com/in/ahmed-ibrahim</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-github"></i>
+              <div>
+                <h3>GitHub</h3>
+                <a href="https://github.com/A7med-Ibrahem" target="_blank"
+                  >github.com/A7med-Ibrahem</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h3>Location</h3>
+                <p>Egypt</p>
+              </div>
+            </div>
+          </div>
+          <form
+            class="contact-form"
+            id="contactForm"
+            action="https://formspree.io/f/mdklrpqo"
+            method="POST"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Subject"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Your Message"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="footer-photo">
+              <img src="photo.jpg.jpeg" alt="Ahmed Ibrahim" />
+            </div>
+            <div class="footer-info">
+              <h3>Ahmed Ibrahim</h3>
+              <p>Full-Stack .NET Developer</p>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <a href="#" id="back-to-top"
+              >Back to Top <i class="fas fa-arrow-up"></i
+            ></a>
+          </div>
+
+          <div class="footer-copyright">
+            <p>
+              &copy; <span id="currentYear"></span> Ahmed Ibrahim. All rights
+              reserved.
+            </p>
+            <p>
+              Built with
+              <i class="fas fa-heart" style="color: #e74c3c"></i> using ASP.NET
+              Core & Modern Web
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="image-lightbox" id="imageLightbox">
+      <span class="close-lightbox">&times;</span>
+      <img id="lightboxImg" alt="Profile Preview" />
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
