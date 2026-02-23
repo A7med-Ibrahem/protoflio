@@ -4,8 +4,9 @@ function handleImageError(img) {
     // Fallback will be handled by onerror attribute in HTML
 }
 
-// Back to Top Button
+// ===== 1. إصلاح زر Back to Top Button =====
 const backToTopButton = document.getElementById('back-to-top');
+
 if (backToTopButton) {
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
@@ -24,20 +25,82 @@ if (backToTopButton) {
     });
 }
 
-// Animate skill bars with delays
-document.addEventListener('DOMContentLoaded', () => {
-    const skillItems = document.querySelectorAll('.skill-item');
-    skillItems.forEach((item, index) => {
-        item.style.setProperty('--animation-order', index);
-        const levelBar = item.querySelector('.skill-level');
-        if (levelBar) {
-            const level = levelBar.getAttribute('data-level');
-            setTimeout(() => {
-                levelBar.style.width = level + '%';
-            }, index * 100);
+// ===== 2. تفعيل أشرطة المهارات (Skills Bars) =====
+document.addEventListener('DOMContentLoaded', function() {
+    // تفعيل أشرطة المهارات عند ظهور القسم
+    const skillsSection = document.getElementById('skills');
+    const skillLevels = document.querySelectorAll('.skill-level');
+    
+    // تخزين القيم الأصلية من data-level
+    skillLevels.forEach(level => {
+        const levelValue = level.getAttribute('data-level');
+        if (levelValue) {
+            level.dataset.targetWidth = levelValue + '%';
         }
     });
+    
+    // مراقب ظهور قسم المهارات
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // تشغيل أنيميشن الأشرطة
+                skillLevels.forEach((level, index) => {
+                    if (level.dataset.targetWidth) {
+                        // إضافة تأخير تدريجي لكل مهارة
+                        setTimeout(() => {
+                            // تعديل الـ pseudo-element عن طريق CSS variable
+                            level.style.setProperty('--target-width', level.dataset.targetWidth);
+                            level.classList.add('animate');
+                            
+                            // تطبيق العرض مباشرة كحل بديل
+                            const style = document.createElement('style');
+                            style.textContent = `
+                                .skill-level[data-level="${level.getAttribute('data-level')}"]::before {
+                                    width: ${level.dataset.targetWidth} !important;
+                                }
+                            `;
+                            document.head.appendChild(style);
+                        }, index * 100); // تأخير 100ms بين كل مهارة
+                    }
+                });
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3, rootMargin: '0px' });
+    
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    }
+    
+    // بديل: لو المهارات ظاهرة من البداية
+    setTimeout(() => {
+        if (isElementInViewport(skillsSection)) {
+            skillLevels.forEach((level, index) => {
+                setTimeout(() => {
+                    if (level.dataset.targetWidth) {
+                        const style = document.createElement('style');
+                        style.textContent = `
+                            .skill-level[data-level="${level.getAttribute('data-level')}"]::before {
+                                width: ${level.dataset.targetWidth} !important;
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                }, index * 100);
+            });
+        }
+    }, 500);
 });
+
+// دالة مساعدة لفحص إذا كان العنصر ظاهر في الشاشة
+function isElementInViewport(el) {
+    if (!el) return false;
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.bottom >= 0
+    );
+}
 
 // Update current year in footer
 document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -159,7 +222,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
             
             // Close mobile menu if open
-            if (navLinks.classList.contains('active')) {
+            if (navLinks && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
                 menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
             }
@@ -167,7 +230,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Theme toggle (existing code)
+// Theme toggle
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle.querySelector('i');
 
@@ -187,27 +250,31 @@ themeToggle.addEventListener('click', () => {
 });
 
 function updateThemeIcon(theme) {
-    themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    if (themeIcon) {
+        themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
 }
 
-// Mobile menu toggle (existing code)
+// Mobile menu toggle
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    menuToggle.innerHTML = navLinks.classList.contains('active') 
-        ? '<i class="fas fa-times"></i>' 
-        : '<i class="fas fa-bars"></i>';
-});
-
-// Close mobile menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuToggle.innerHTML = navLinks.classList.contains('active') 
+            ? '<i class="fas fa-times"></i>' 
+            : '<i class="fas fa-bars"></i>';
     });
-});
+
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+}
 
 // Add fade-in animations to sections
 const observerOptions = {
@@ -215,12 +282,12 @@ const observerOptions = {
     rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
+const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
+            sectionObserver.unobserve(entry.target);
         }
     });
 }, observerOptions);
@@ -229,24 +296,29 @@ document.querySelectorAll('section').forEach(section => {
     section.style.opacity = '0';
     section.style.transform = 'translateY(20px)';
     section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
+    sectionObserver.observe(section);
 });
 
+// Image Lightbox
 const profileImg = document.getElementById('profileImg');
 const lightbox = document.getElementById('imageLightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const closeBtn = document.querySelector('.close-lightbox');
 
-profileImg.addEventListener('click', () => {
-    lightbox.classList.add('active');
-    lightboxImg.src = profileImg.src;
-});
+if (profileImg && lightbox && lightboxImg && closeBtn) {
+    profileImg.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = profileImg.src;
+    });
 
-closeBtn.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-});
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+}
 
 function closeLightbox() {
-    lightbox.classList.remove('active');
+    if (lightbox) {
+        lightbox.classList.remove('active');
+    }
 }
