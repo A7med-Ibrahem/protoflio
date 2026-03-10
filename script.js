@@ -26,11 +26,11 @@ if (backToTopButton) {
 }
 
 // ===== 2. تفعيل أشرطة المهارات (Skills Bars) =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // تفعيل أشرطة المهارات عند ظهور القسم
     const skillsSection = document.getElementById('skills');
     const skillLevels = document.querySelectorAll('.skill-level');
-    
+
     // تخزين القيم الأصلية من data-level
     skillLevels.forEach(level => {
         const levelValue = level.getAttribute('data-level');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             level.dataset.targetWidth = levelValue + '%';
         }
     });
-    
+
     // مراقب ظهور قسم المهارات
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             // تعديل الـ pseudo-element عن طريق CSS variable
                             level.style.setProperty('--target-width', level.dataset.targetWidth);
                             level.classList.add('animate');
-                            
+
                             // تطبيق العرض مباشرة كحل بديل
                             const style = document.createElement('style');
                             style.textContent = `
@@ -67,11 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { threshold: 0.3, rootMargin: '0px' });
-    
+
     if (skillsSection) {
         observer.observe(skillsSection);
     }
-    
+
     // بديل: لو المهارات ظاهرة من البداية
     setTimeout(() => {
         if (isElementInViewport(skillsSection)) {
@@ -110,30 +110,39 @@ const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
-        
+
         // Show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
-        
+
         try {
-            // You can replace this with your own form submission logic
-            // For now, we'll simulate a successful submission
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-            contactForm.reset();
-            
-            // Show success notification
-            showNotification('Thank you! Your message has been sent successfully.', 'success');
+            const formData = new FormData(contactForm);
+
+            const response = await fetch('https://formspree.io/f/mdklrpqo', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                contactForm.reset();
+                showNotification('Thank you! Your message has been sent successfully.', 'success');
+            } else {
+                const result = await response.json();
+                throw new Error(result.errors?.[0]?.message || 'Failed to send message.');
+            }
         } catch (error) {
             console.error('Error:', error);
             submitBtn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Try Again';
-            showNotification('Failed to send message. Please try again.', 'error');
+            showNotification(error.message || 'Failed to send message. Please try again.', 'error');
         }
-        
+
         // Reset button after 5 seconds
         setTimeout(() => {
             submitBtn.innerHTML = originalText;
@@ -150,9 +159,9 @@ function showNotification(message, type) {
         <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
         <span>${message}</span>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Add styles for notification
     notification.style.cssText = `
         position: fixed;
@@ -169,7 +178,7 @@ function showNotification(message, type) {
         animation: slideIn 0.3s ease-out;
         box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     `;
-    
+
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease-out forwards';
         setTimeout(() => notification.remove(), 300);
@@ -207,20 +216,20 @@ document.head.appendChild(style);
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
-        
+
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             const headerHeight = document.querySelector('.navbar').offsetHeight;
             const targetPosition = targetElement.offsetTop - headerHeight - 20;
-            
+
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
             });
-            
+
             // Close mobile menu if open
             if (navLinks && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
@@ -234,7 +243,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle.querySelector('i');
 
-const savedTheme = localStorage.getItem('theme') || 
+const savedTheme = localStorage.getItem('theme') ||
     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
 document.documentElement.setAttribute('data-theme', savedTheme);
@@ -243,7 +252,7 @@ updateThemeIcon(savedTheme);
 themeToggle.addEventListener('click', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
+
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateThemeIcon(newTheme);
@@ -262,8 +271,8 @@ const navLinks = document.querySelector('.nav-links');
 if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        menuToggle.innerHTML = navLinks.classList.contains('active') 
-            ? '<i class="fas fa-times"></i>' 
+        menuToggle.innerHTML = navLinks.classList.contains('active')
+            ? '<i class="fas fa-times"></i>'
             : '<i class="fas fa-bars"></i>';
     });
 
